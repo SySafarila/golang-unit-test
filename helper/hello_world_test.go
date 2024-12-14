@@ -103,3 +103,29 @@ func TestHelloWorldSafarila(t *testing.T) {
 	}
 	fmt.Println("TestHelloWorld Done")
 }
+
+func BenchmarkHelloWorld(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		HelloWorld("Syahrul")
+	}
+}
+
+func BenchmarkHelloWorldSafarila(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		HelloWorld("Safarila")
+	}
+}
+
+func BenchmarkSub(b *testing.B) {
+	b.Run("Syahrul", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Syahrul")
+		}
+	})
+
+	b.Run("Safarila", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Safarila")
+		}
+	})
+}
